@@ -1,0 +1,28 @@
+version: '3.1'
+
+volumes:
+  pg_project_housing_stock:
+
+services:
+  pg_db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=housing_stock_db
+    volumes:
+      - pg_project_housing_stock:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5436:5432"
+
+  app:
+    restart: always
+    build: .
+    ports:
+      - "127.0.0.1:8083:8080"
+    depends_on:
+      - pg_db
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://pg_db:5432/housing_stock_db'
+      JAVA_OPTS: '-Xmx512m'
