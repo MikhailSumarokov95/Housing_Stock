@@ -18,6 +18,20 @@ public class User implements UserDetails {
     private String password;
     private Long house_id;
 
+    public User() {
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, Integer age, String password) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
