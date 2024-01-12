@@ -15,7 +15,9 @@ public class HouseDto {
     @Range(min = 0, max = 9223372036854775807L, message = "Поле \"id владельца\" должно находится в пределах от 0 до 9223372036854775807")
     private final Long ownerId;
 
-    public HouseDto(Long id, String address, Long ownerId) {
+    public HouseDto(Long id,
+                    String address,
+                    Long ownerId) {
         this.id = id;
         this.address = address;
         this.ownerId = ownerId;
@@ -38,6 +40,8 @@ public class HouseDto {
     }
 
     public static HouseDto toDto(House entity) {
-        return new HouseDto(entity.getId(), entity.getAddress(), entity.getOwnerId());
+        return new HouseDto(entity.getId(),
+                entity.getAddress(),
+                entity.getOwnerId());
     }
 }

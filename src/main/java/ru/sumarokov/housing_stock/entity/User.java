@@ -8,7 +8,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User implements UserDetails, Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,13 @@ public class User implements UserDetails {
         this.name = name;
         this.age = age;
         this.password = password;
+    }
+
+    public User(Long id, String name, Integer age, Long houseId) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.houseId = houseId;
     }
 
     public Long getId() {
@@ -101,5 +108,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

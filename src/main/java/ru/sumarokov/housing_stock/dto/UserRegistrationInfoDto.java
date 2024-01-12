@@ -18,7 +18,9 @@ public class UserRegistrationInfoDto {
     @Size(min = 0, max = 64, message = "Поле \"Пароль\" должно быть длиной от 0 до 64 символов")
     private final String password;
 
-    public UserRegistrationInfoDto(String name, Integer age, String password) {
+    public UserRegistrationInfoDto(String name,
+                                   Integer age,
+                                   String password) {
         this.name = name;
         this.age = age;
         this.password = password;

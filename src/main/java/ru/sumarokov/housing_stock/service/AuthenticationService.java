@@ -15,30 +15,27 @@ import ru.sumarokov.housing_stock.repository.UserRepository;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final UserService userService;
 
     @Autowired
     public AuthenticationService(UserRepository userRepository,
-                                 PasswordEncoder passwordEncoder,
                                  JwtService jwtService,
-                                 AuthenticationManager authenticationManager) {
+                                 AuthenticationManager authenticationManager,
+                                 UserService userService) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
+        this.userService = userService;
     }
 
     public TokenDto register(User user) {
         if (userRepository.existsByName(user.getName())) {
             throw new IllegalArgumentException("User is already registered");
         }
-        User newUser = new User();
-        newUser.setName(user.getName());
-        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(newUser);
-        String jwtToken = jwtService.generateToken(user);
+        User newUser = userService.createdUser(user);
+        String jwtToken = jwtService.generateToken(newUser);
         return new TokenDto(jwtToken);
     }
 

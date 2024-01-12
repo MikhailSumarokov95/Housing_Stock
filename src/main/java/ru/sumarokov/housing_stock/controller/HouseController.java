@@ -93,7 +93,7 @@ public class HouseController {
                                             @PathVariable Long houseId) {
         User user = userService.getUser(principal);
         houseService.deleteHouse(houseId, user.getId());
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.accepted().build();
     }
 
     @Operation(summary = "Add tenant to house", tags = "house")
@@ -109,6 +109,6 @@ public class HouseController {
                                                  @RequestParam(required = false, value = "house-id") Long houseId) {
         User user = userService.getUser(principal);
         houseService.addTenantToHouse(houseId, tenantId, user.getId());
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.accepted().build();
     }
 }
