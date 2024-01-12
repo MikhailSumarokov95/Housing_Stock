@@ -16,7 +16,7 @@ public class User implements UserDetails {
     private String name;
     private Integer age;
     private String password;
-    private Long house_id;
+    private Long houseId;
 
     public User() {
     }
@@ -65,12 +65,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Long getHouse_id() {
-        return house_id;
+    public Long getHouseId() {
+        return houseId;
     }
 
-    public void setHouse_id(Long house_id) {
-        this.house_id = house_id;
+    public void setHouseId(Long houseId) {
+        this.houseId = houseId;
     }
 
     @Override

@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.sumarokov.housing_stock.config.JwtService;
 import ru.sumarokov.housing_stock.dto.TokenDto;
-import ru.sumarokov.housing_stock.dto.UserRegistrationInfoDto;
 import ru.sumarokov.housing_stock.entity.User;
 import ru.sumarokov.housing_stock.exception.EntityNotFoundException;
 import ru.sumarokov.housing_stock.repository.UserRepository;
