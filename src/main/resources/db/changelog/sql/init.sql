@@ -8,13 +8,12 @@ CREATE TABLE IF NOT EXISTS users(
     name        VARCHAR(64),
     age         INTEGER,
     password    VARCHAR(64),
-    house_id    BIGSERIAL
+    house_id    BIGINT
 );
 
 CREATE TABLE IF NOT EXISTS house(
     id          BIGSERIAL PRIMARY KEY,
     address     VARCHAR(64),
-    age         INTEGER,
     owner_id    BIGSERIAL
 );
 

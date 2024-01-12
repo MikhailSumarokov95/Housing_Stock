@@ -26,9 +26,11 @@ public class HouseService {
                 .orElseThrow(() -> new EntityNotFoundException(House.class, houseId));
     }
 
-    public House createHouse(House house) {
+    public House createHouse(House house, Long userId) {
         if (house.getId() != null) {
             throw new IllegalArgumentException("The new house id must be null");
+        } else if (!house.getOwnerId().equals(userId)) {
+            throw new AccessDeniedException("You can't create a home for another person");
         }
         return houseRepository.save(house);
     }
@@ -41,7 +43,7 @@ public class HouseService {
         return houseRepository.save(house);
     }
 
-    public void deleteTask(Long houseId, Long userId) {
+    public void deleteHouse(Long houseId, Long userId) {
         checkWhetherHouseCanBeChanged(houseId, userId);
         houseRepository.deleteById(houseId);
     }

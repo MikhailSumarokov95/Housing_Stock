@@ -10,8 +10,16 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
-    private Integer age;
     private Long ownerId;
+
+    public House() {
+    }
+
+    public House(Long id, String address, Long ownerId) {
+        this.id = id;
+        this.address = address;
+        this.ownerId = ownerId;
+    }
 
     public Long getId() {
         return id;
@@ -27,14 +35,6 @@ public class House {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public Long getOwnerId() {
