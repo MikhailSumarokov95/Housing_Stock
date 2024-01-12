@@ -11,11 +11,7 @@ import ru.sumarokov.housing_stock.entity.User;
 import ru.sumarokov.housing_stock.exception.EntityNotFoundException;
 import ru.sumarokov.housing_stock.repository.UserRepository;
 
-import java.io.IOException;
-import java.rmi.ServerException;
-import java.rmi.server.ServerCloneException;
 import java.security.Principal;
-import java.util.Arrays;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -46,7 +42,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new EntityNotFoundException(User.class, userId));
     }
 
-    public User createdUser(User user)  {
+    public User createdUser(User user) {
         try {
             User userClone = (User) user.clone();
             userClone.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -56,10 +52,10 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public User updateUser(User user, Principal principal)  {
+    public User updateUser(User user, Principal principal) {
         checkWhetherUserCanBeChanged(user.getId(), principal);
         User userUpdate = userRepository.findById(user.getId()).
-             orElseThrow(() -> new EntityNotFoundException(User.class, user.getId()));
+                orElseThrow(() -> new EntityNotFoundException(User.class, user.getId()));
         try {
             User userClone = (User) user.clone();
             userClone.setPassword(userUpdate.getPassword());
